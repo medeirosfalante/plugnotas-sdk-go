@@ -1,0 +1,6 @@
+vendor
+vendor.origi
+.env
+docker-compose
+nohup.out
+.DS_Store
