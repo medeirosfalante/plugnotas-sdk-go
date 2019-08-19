@@ -65,3 +65,14 @@ func TestCreateNfse(t *testing.T) {
 	assert.NotEmpty(t, result.Protocol, "Protocol can't be empty")
 
 }
+
+func TestGetNfseByID(t *testing.T) {
+	godotenv.Load("./.env")
+	id := "5d5ad649c7de482dee17451c"
+	client := plugnotas.NewClient(os.Getenv("API_KEY"))
+	result, err := client.GetNfseByID(id)
+	if err != nil {
+		t.Errorf("TestCreateNfse:%#v", err.Error)
+	}
+	assert.Equal(t, result.ID, id, "return id should is id")
+}
