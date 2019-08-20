@@ -60,7 +60,7 @@ func (plugnotas *Client) CreateNfse(req []*Nfse) (*NfseResponse, *ErrorResponse)
 	data, err := json.Marshal(req)
 	if err != nil {
 		return nil, &ErrorResponse{
-			Error: &Error{
+			Error: &Message{
 				Message: err.Error(),
 			},
 		}
@@ -69,7 +69,7 @@ func (plugnotas *Client) CreateNfse(req []*Nfse) (*NfseResponse, *ErrorResponse)
 	err, errAPI := plugnotas.Request("POST", "/nfse", data, result)
 	if err != nil {
 		return nil, &ErrorResponse{
-			Error: &Error{
+			Error: &Message{
 				Message: err.Error(),
 			},
 		}
@@ -87,7 +87,7 @@ func (plugnotas *Client) GetNfseByID(id string) (*Nfse, *ErrorResponse) {
 	err, errAPI := plugnotas.Request("GET", fmt.Sprintf("/nfse/%s", id), nil, result)
 	if err != nil {
 		return nil, &ErrorResponse{
-			Error: &Error{
+			Error: &Message{
 				Message: err.Error(),
 			},
 		}
@@ -105,7 +105,7 @@ func (plugnotas *Client) ConsultarNfse(id string) (ResumoNfseList, *ErrorRespons
 	err, errAPI := plugnotas.Request("GET", fmt.Sprintf("/nfse/consultar/%s", id), nil, &result)
 	if err != nil {
 		return nil, &ErrorResponse{
-			Error: &Error{
+			Error: &Message{
 				Message: err.Error(),
 			},
 		}

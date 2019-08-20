@@ -68,10 +68,10 @@ type Valor struct {
 }
 
 type ErrorResponse struct {
-	Error *Error `json:"error"`
+	Error *Message `json:"error"`
 }
 
-type Error struct {
+type Message struct {
 	Message string      `json:"message"`
 	Data    interface{} `json:"Data"`
 }
