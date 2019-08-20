@@ -35,6 +35,7 @@ type Tomador struct {
 	InscricaoEstadual  string `json:"inscricaoEstadual"`
 	RazaoSocial        string `json:"razaoSocial"`
 	NomeFantasia       string `json:"nomeFantasia"`
+	Email              string `json:"email"`
 }
 
 type Prestador struct {
