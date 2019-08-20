@@ -109,6 +109,7 @@ func (plugnotas *Client) Request(method, action string, body []byte, out interfa
 		return err, nil
 	}
 	bodyResponse, err := ioutil.ReadAll(res.Body)
+	fmt.Printf("bodyResponse %s", bodyResponse)
 	if res.StatusCode > 200 {
 		var errAPI ErrorResponse
 		err = json.Unmarshal(bodyResponse, &errAPI)
