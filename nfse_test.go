@@ -87,3 +87,13 @@ func TestConsultarNfse(t *testing.T) {
 	}
 	assert.Equal(t, len(result), 1, "return array should is 1")
 }
+
+func TestCancelarNfse(t *testing.T) {
+	godotenv.Load("./.env")
+	id := "5d5ad649c7de482dee17451c"
+	client := plugnotas.NewClient(os.Getenv("API_KEY"))
+	_, err := client.CancelarNfse(id)
+	if err != nil {
+		t.Errorf("TestCancelarNfse:%#v", err.Error)
+	}
+}

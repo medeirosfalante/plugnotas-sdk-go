@@ -35,6 +35,7 @@ type Tomador struct {
 	InscricaoEstadual  string `json:"inscricaoEstadual"`
 	RazaoSocial        string `json:"razaoSocial"`
 	NomeFantasia       string `json:"nomeFantasia"`
+	Email              string `json:"email"`
 }
 
 type Prestador struct {
@@ -68,17 +69,17 @@ type Valor struct {
 }
 
 type ErrorResponse struct {
-	Error *Error `json:"error"`
+	Error *Message `json:"error"`
 }
 
-type Error struct {
+type Message struct {
 	Message string      `json:"message"`
 	Data    interface{} `json:"Data"`
 }
 
 func NewClient(token string) *Client {
 	return &Client{
-		client: &http.Client{Timeout: 10 * time.Second},
+		client: &http.Client{Timeout: 30 * time.Second},
 		Token:  token,
 	}
 }
@@ -92,10 +93,10 @@ func (plugnotas *Client) devProd() string {
 
 func (plugnotas *Client) Request(method, action string, body []byte, out interface{}) (error, *ErrorResponse) {
 	if plugnotas.client == nil {
-		plugnotas.client = &http.Client{Timeout: 10 * time.Second}
+		plugnotas.client = &http.Client{Timeout: 30 * time.Second}
 	}
 	endpoint := fmt.Sprintf("%s%s", plugnotas.devProd(), action)
-	fmt.Printf("body %s\n\n", string(body))
+	fmt.Printf("\n\nurl %s\n\n", endpoint)
 	req, err := http.NewRequest(method, endpoint, bytes.NewBuffer(body))
 	if err != nil {
 		return err, nil
@@ -109,7 +110,7 @@ func (plugnotas *Client) Request(method, action string, body []byte, out interfa
 		return err, nil
 	}
 	bodyResponse, err := ioutil.ReadAll(res.Body)
-	fmt.Printf("bodyResponse %s", bodyResponse)
+	fmt.Printf("\n\nbodyResponse %s\n\n", bodyResponse)
 	if res.StatusCode > 200 {
 		var errAPI ErrorResponse
 		err = json.Unmarshal(bodyResponse, &errAPI)
