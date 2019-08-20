@@ -34,7 +34,25 @@ type Nfse struct {
 	ID           string     `json:"id"`
 }
 type ResumoNfse struct {
+	ID                string  `json:"id"`
+	IDIntegracao      string  `json:"idIntegracao"`
+	Emissao           string  `json:"emissao"`
+	TipoAutorizacao   string  `json:"tipoAutorizacao"`
+	Situacao          string  `json:"situacao"`
+	Prestador         string  `json:"prestador"`
+	Tomador           string  `json:"tomador"`
+	ValorServico      float32 `json:"valorServico"`
+	NumeroNfse        string  `json:"numeroNfse"`
+	Serie             string  `json:"serie"`
+	Lote              string  `json:"lote"`
+	CodigoVerificacao string  `json:"codigoVerificacao"`
+	Autorizacao       string  `json:"autorizacao"`
+	Mensagem          string  `json:"mensagem"`
+	Pdf               string  `json:"pdf"`
+	XML               string  `json:"xml"`
+	Cancelamento      string  `json:"cancelamento"`
 }
+type ResumoNfseList []*ResumoNfse
 
 // CreateNfse - enviar uma lista de notas
 func (plugnotas *Client) CreateNfse(req []*Nfse) (*NfseResponse, *ErrorResponse) {
@@ -82,9 +100,9 @@ func (plugnotas *Client) GetNfseByID(id string) (*Nfse, *ErrorResponse) {
 }
 
 // GetNfseByID buscar nota por id
-func (plugnotas *Client) ConsultarNfse(id string) ([]*ResumoNfse, *ErrorResponse) {
-	var result []*ResumoNfse
-	err, errAPI := plugnotas.Request("GET", fmt.Sprintf("/nfse/consultar/%s", id), nil, result)
+func (plugnotas *Client) ConsultarNfse(id string) (ResumoNfseList, *ErrorResponse) {
+	var result ResumoNfseList
+	err, errAPI := plugnotas.Request("GET", fmt.Sprintf("/nfse/consultar/%s", id), nil, &result)
 	if err != nil {
 		return nil, &ErrorResponse{
 			Error: &Error{
