@@ -76,3 +76,14 @@ func TestGetNfseByID(t *testing.T) {
 	}
 	assert.Equal(t, result.ID, id, "return id should is id")
 }
+
+func TestConsultarNfse(t *testing.T) {
+	godotenv.Load("./.env")
+	id := "5d5ad649c7de482dee17451c"
+	client := plugnotas.NewClient(os.Getenv("API_KEY"))
+	result, err := client.ConsultarNfse(id)
+	if err != nil {
+		t.Errorf("TestConsultarNfse:%#v", err.Error)
+	}
+	assert.Equal(t, len(result), 1, "return array should is 1")
+}
