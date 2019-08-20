@@ -116,3 +116,21 @@ func (plugnotas *Client) ConsultarNfse(id string) (ResumoNfseList, *ErrorRespons
 	return result, nil
 
 }
+
+// GetNfseByID buscar nota por id
+func (plugnotas *Client) CancelarNfse(id string) (*Message, *ErrorResponse) {
+	var result Message
+	err, errAPI := plugnotas.Request("POST", fmt.Sprintf("/nfse/cancelar/%s", id), []byte("{}"), &result)
+	if err != nil {
+		return nil, &ErrorResponse{
+			Error: &Message{
+				Message: err.Error(),
+			},
+		}
+	}
+	if errAPI != nil {
+		return nil, errAPI
+	}
+	return &result, nil
+
+}
