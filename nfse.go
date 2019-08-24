@@ -22,6 +22,7 @@ type Servico struct {
 	DescricaoCidadeIncidencia string `json:"descricaoCidadeIncidencia"`
 	Iss                       *Iss   `json:"iss"`
 	Valor                     *Valor `json:"valor"`
+	InformacoesLegais         string `json:"informacoesLegais"`
 }
 
 // Nfse - Struct para definir o objeto Nfse
@@ -34,23 +35,24 @@ type Nfse struct {
 	ID           string     `json:"id"`
 }
 type ResumoNfse struct {
-	ID                string  `json:"id"`
-	IDIntegracao      string  `json:"idIntegracao"`
-	Emissao           string  `json:"emissao"`
-	TipoAutorizacao   string  `json:"tipoAutorizacao"`
-	Situacao          string  `json:"situacao"`
-	Prestador         string  `json:"prestador"`
-	Tomador           string  `json:"tomador"`
-	ValorServico      float32 `json:"valorServico"`
-	NumeroNfse        string  `json:"numeroNfse"`
-	Serie             string  `json:"serie"`
-	Lote              string  `json:"lote"`
-	CodigoVerificacao string  `json:"codigoVerificacao"`
-	Autorizacao       string  `json:"autorizacao"`
-	Mensagem          string  `json:"mensagem"`
-	Pdf               string  `json:"pdf"`
-	XML               string  `json:"xml"`
-	Cancelamento      string  `json:"cancelamento"`
+	ID                string      `json:"id"`
+	IDIntegracao      string      `json:"idIntegracao"`
+	Emissao           string      `json:"emissao"`
+	TipoAutorizacao   string      `json:"tipoAutorizacao"`
+	Situacao          string      `json:"situacao"`
+	Prestador         string      `json:"prestador"`
+	Tomador           string      `json:"tomador"`
+	ValorServico      float32     `json:"valorServico"`
+	NumeroNfse        string      `json:"numeroNfse"`
+	Serie             string      `json:"serie"`
+	Lote              string      `json:"lote"`
+	CodigoVerificacao string      `json:"codigoVerificacao"`
+	Autorizacao       string      `json:"autorizacao"`
+	Mensagem          string      `json:"mensagem"`
+	Pdf               string      `json:"pdf"`
+	XML               string      `json:"xml"`
+	Cancelamento      string      `json:"cancelamento"`
+	Error             interface{} `json:"erros"`
 }
 type ResumoNfseList []*ResumoNfse
 
