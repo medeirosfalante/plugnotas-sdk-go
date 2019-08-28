@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
+	"github.com/Stratumhk/plugnotas-sdk-go"
 	"github.com/joho/godotenv"
-	"github.com/rafaeltokyo/plugnotas-sdk-go"
 	"github.com/stretchr/testify/assert"
 )
 
