@@ -45,7 +45,7 @@ type ResumoNfse struct {
 	ValorServico      float32     `json:"valorServico"`
 	NumeroNfse        string      `json:"numeroNfse"`
 	Serie             string      `json:"serie"`
-	Lote              string      `json:"lote"`
+	Lote              int         `json:"lote"`
 	CodigoVerificacao string      `json:"codigoVerificacao"`
 	Autorizacao       string      `json:"autorizacao"`
 	Mensagem          string      `json:"mensagem"`
